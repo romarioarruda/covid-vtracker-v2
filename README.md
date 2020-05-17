@@ -1,6 +1,6 @@
-# Quasar App (covid-vtracker-v2)
+# Covid App (covid-vtracker-v2)
 
-A Quasar Framework app
+A Vue.js and Quasar Framework app
 
 ## Install the quasar cli
 ```bash
