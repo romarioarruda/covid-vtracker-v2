@@ -84,7 +84,7 @@ export default {
           blank: false
         },
         {
-          title: 'Notícias Relacionadas',
+          title: 'Úlitimas Notícias',
           caption: 'Coronavirus',
           icon: 'unsubscribe',
           link: '/coronavirus',
@@ -101,9 +101,9 @@ export default {
         },
         {
           title: 'Github',
-          caption: 'github.com/romarioarruda/covid-vtracker',
+          caption: 'github.com/covid-vtracker-v2',
           icon: 'code',
-          link: 'https://github.com/romarioarruda/covid-vtracker',
+          link: 'https://github.com/romarioarruda/covid-vtracker-v2',
           blank: true
         }
       ]

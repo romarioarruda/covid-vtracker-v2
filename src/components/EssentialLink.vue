@@ -3,6 +3,7 @@
     clickable
     tag="a"
     target="blank"
+    rel="noopener noreferrer"
     :href="link"
     v-if="blank"
   >

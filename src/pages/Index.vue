@@ -8,10 +8,10 @@
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalConfirmadoBR | formatNumber}}</q-avatar>
                     casos no Brasil
                 </q-chip>
-                <q-chip square>
+                <!-- <q-chip square>
                     <q-avatar color="blue" text-color="white" class="largura-80">0</q-avatar>
                     curados
-                </q-chip>
+                </q-chip> -->
                 <q-chip square>
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalMortesPais | formatNumber}}</q-avatar>
                     mortes no país
