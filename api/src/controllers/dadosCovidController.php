@@ -17,7 +17,6 @@ class dadosCovidController {
                     'last_updated' => $valor->last_updated
                 ];
             }
-            return Flight::json(['dados' => $dados]);
         }
         return Flight::json(array('dados' => $dados));
     }

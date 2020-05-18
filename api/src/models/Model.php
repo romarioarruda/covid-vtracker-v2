@@ -31,7 +31,6 @@ class Model {
     
 
     public static function getOne($filters = [], $columns = '*') {
-
         $class = get_called_class();
         $result = static::getResultSetFromSelect($filters, $columns);
         return $result ? new $class($result->fetch_assoc()) : null;
@@ -117,7 +116,5 @@ class Model {
             return $value;
         }
     }
-
-
 
 }
