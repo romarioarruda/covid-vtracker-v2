@@ -18,6 +18,7 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.18.1",
     "cors": "^2.8.5",
+    "highcharts": "^8.1.0",
     "moment": "^2.25.3",
     "quasar": "^1.0.0"
   },

@@ -30,7 +30,6 @@ class dadosCovidController {
         if($result[0]) {
             $dados = [
                 'id_registro' => $result[0]->id_registro,
-                'titulo' => $result[0]->titulo,
                 'novos' => $result[0]->novos,
                 'recuperados' => $result[0]->recuperados,
                 'last_updated' => $result[0]->last_updated
