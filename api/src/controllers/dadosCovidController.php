@@ -22,7 +22,25 @@ class dadosCovidController {
     }
 
 
-    public function varreApiGoverno() {
+    public function getRecuperados() {
+        header("Access-Control-Allow-Origin: *");
+        $dados = [];
+        $result = CovidRecuperados::get();
+
+        if($result[0]) {
+            $dados = [
+                'id_registro' => $result[0]->id_registro,
+                'titulo' => $result[0]->titulo,
+                'novos' => $result[0]->novos,
+                'recuperados' => $result[0]->recuperados,
+                'last_updated' => $result[0]->last_updated
+            ];
+        }
+        return Flight::json(array('dados' => $dados));
+    }
+
+
+    public function execVarreduraApiGoverno() {
         exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalEstado'", $output_curl);
         
         $objetoJson = json_decode($output_curl[0]);
@@ -34,5 +52,18 @@ class dadosCovidController {
             return Flight::json(['updated' => 1]);
         }
         return Flight::json(['updated' => 0]);
+    }
+
+
+    public function execTotalRecuperados(){
+        exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeralApi'", $output_curl);
+        
+        $objetoJson = json_decode($output_curl[0]);
+
+        if($objetoJson) {
+            CovidRecuperados::updateRecuperados($objetoJson->confirmados);
+            return Flight::json(['recuperados_updated' => 1]);
+        }
+        return Flight::json(['recuperados_updated' => 0]);
     }
 }

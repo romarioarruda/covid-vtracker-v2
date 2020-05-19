@@ -6,12 +6,12 @@
             <div class="justify-between row justify-wrap">
                 <q-chip square>
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalConfirmadoBR | formatNumber}}</q-avatar>
-                    casos no Brasil
+                    casos no país
                 </q-chip>
-                <!-- <q-chip square>
-                    <q-avatar color="blue" text-color="white" class="largura-80">0</q-avatar>
+                <q-chip square>
+                    <q-avatar color="blue" text-color="white" class="largura-80">{{totalRecuperados | formatNumber}}</q-avatar>
                     curados
-                </q-chip> -->
+                </q-chip>
                 <q-chip square>
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalMortesPais | formatNumber}}</q-avatar>
                     mortes no país
@@ -84,6 +84,7 @@ export default {
 
   mounted () {
     this.getdadosCovidBR()
+    this.getTotalRecuperados()
   },
 
   methods: {
@@ -101,6 +102,15 @@ export default {
             this.totalMortesPais += parseInt(item.obitos_acumulado)
             return dados
           })
+        })
+    },
+
+    getTotalRecuperados () {
+      axios.get('http://localhost:8081/get-recuperados')
+        .then((res) => {
+          if (res.data) {
+            this.totalRecuperados = parseInt(res.data.dados.recuperados)
+          }
         })
     },
 

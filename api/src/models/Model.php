@@ -85,8 +85,8 @@ class Model {
         }
         $sql[strlen($sql) - 1] = ' ';
         $sql .= " WHERE id_registro = {$this->id_registro}";
+ 
         Database::executeSQL($sql);
-
     }
 
 
