@@ -27,13 +27,15 @@ class dadosCovidController {
         $dados = [];
         $result = CovidRecuperados::get();
 
-        if($result[0]) {
-            $dados = [
-                'id_registro' => $result[0]->id_registro,
-                'novos' => $result[0]->novos,
-                'recuperados' => $result[0]->recuperados,
-                'last_updated' => $result[0]->last_updated
-            ];
+        if($result) {
+            foreach($result as $chave => $valor) {
+                $dados[] = [
+                    'id_registro' => $valor->id_registro,
+                    'novos' => $valor->novos,
+                    'recuperados' => $valor->recuperados,
+                    'last_updated' => $valor->last_updated
+                ];
+            }
         }
         return Flight::json(array('dados' => $dados));
     }

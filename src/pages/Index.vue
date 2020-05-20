@@ -46,6 +46,9 @@
             </q-table>
         </template>
     </div>
+    <div class="col-md-10 col-xs-12 q-mt-xl">
+      <GraficoCasosConfirmados />
+    </div>
   </q-page>
 </template>
 
@@ -53,9 +56,11 @@
 import axios from 'axios'
 import moment from 'moment'
 import { exportFile } from 'quasar'
+import GraficoCasosConfirmados from '../components/GraficoCasosConfirmados'
 
 export default {
   name: 'PageIndex',
+  components: { GraficoCasosConfirmados },
   data () {
     return {
       titulo: 'Covid-19 no Brasil',
@@ -74,6 +79,7 @@ export default {
         { name: 'last_updated', label: 'Última atualização', field: 'last_updated', sortable: true }
       ],
       dadosCovidBR: [],
+      casosConfirmados: [],
       totalConfirmadoBR: 0,
       totalRecuperados: 0,
       totalEstadosAfetados: 0,
@@ -109,7 +115,12 @@ export default {
       axios.get('http://localhost:8081/get-recuperados')
         .then((res) => {
           if (res.data) {
-            this.totalRecuperados = parseInt(res.data.dados.recuperados)
+            if (res.data.dados) {
+              res.data.dados.map((item) => {
+                this.totalRecuperados = parseInt(item.recuperados)
+                this.casosConfirmados.push(item)
+              })
+            }
           }
         })
     },
