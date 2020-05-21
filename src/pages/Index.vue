@@ -46,9 +46,7 @@
             </q-table>
         </template>
     </div>
-    <div class="col-md-10 col-xs-12 q-mt-xl">
-      <GraficoCasosConfirmados />
-    </div>
+    <GraficoCasosConfirmados :casos="casosConfirmados" />
   </q-page>
 </template>
 
