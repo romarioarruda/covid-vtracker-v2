@@ -1,7 +1,7 @@
 <template>
   <q-page padding class="row justify-center">
     <div class="col-md-10 col-xs-12">
-        <div class="text-h4 q-mb-xl q-mt-md">{{titulo}}</div>
+        <div class="q-mb-xl q-mt-md" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">{{titulo}}</div>
         <template>
             <div class="justify-between row justify-wrap">
                 <q-chip square>
@@ -29,6 +29,7 @@
             >
                 <template v-slot:top-left v-if="dadosCovidBR.length">
                     <q-btn
+                      :class="this.$q.screen.xs ? 'q-mb-md': ''"
                       color="primary"
                       icon-right="archive"
                       label="Arquivo CSV"
@@ -45,9 +46,12 @@
                     </q-input>
                 </template>
             </q-table>
+            <div class="text-caption text-weight-light q-mt-xs q-ml-xs">Fonte: Secretarias Estaduais de Saúde</div>
         </template>
     </div>
-    <GraficoCasosConfirmados :casos="casosConfirmados" />
+    <div class="col-md-10 col-xs-12 q-mt-xl">
+      <GraficoCasosConfirmados :casos="casosConfirmados" />
+    </div>
   </q-page>
 </template>
 

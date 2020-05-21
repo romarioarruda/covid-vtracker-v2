@@ -1,9 +1,9 @@
 <template>
-  <div class="area-graficos row justify-center q-mt-xl">
-    <div class="col-md-10 col-xs-12 q-mt-md" id="tituloSecao">
-      <div class="text-h4 row justify-start">Casos confirmados</div>
+  <div class="area-graficos row justify-center">
+    <div class="col-md-12 col-xs-12 q-mt-md" id="tituloSecao">
+      <div class="row justify-start" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">Casos confirmados</div>
     </div>
-    <div id="graficoNovosCasos" class="shadow-6 col-md-10 col-xs-12 q-mt-md">
+    <div id="graficoNovosCasos" class="shadow-6 col-md-12 col-xs-12 q-mt-md">
       <q-card class="my-card">
         <q-card-section class="row justify-center">
           <highcharts
@@ -13,7 +13,7 @@
       </q-card>
     </div>
 
-    <div id="casosRecuperados" class="shadow-6 col-md-10 col-xs-12 q-mt-xl">
+    <div id="casosRecuperados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
       <q-card class="shadow-6">
         <q-card-section class="row justify-center">
           <highcharts
@@ -22,7 +22,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <div id="casosAcompanhados" class="shadow-6 col-md-10 col-xs-12 q-mt-xl">
+    <div id="casosAcompanhados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
       <q-card class="shadow-6">
         <q-card-section class="row justify-center">
           <highcharts
@@ -86,7 +86,7 @@ export default {
               rotation: -10,
               align: 'center',
               style: {
-                fontSize: '13px',
+                fontSize: '10px',
                 fontFamily: 'Verdana, sans-serif'
               }
             }
@@ -109,13 +109,13 @@ export default {
               data: dados.data.map((item) => [ item.date, item.new ]),
               dataLabels: {
                 enabled: true,
-                rotation: -50,
+                rotation: -20,
                 color: '#FFFFFF',
                 align: 'center',
                 format: '{point.y:1f}',
-                y: 60, // 10 pixels down from the top
+                y: 60, // 60 pixels down from the top
                 style: {
-                  fontSize: '13px',
+                  fontSize: '10px',
                   fontFamily: 'Verdana, sans-serif'
                 }
               }
