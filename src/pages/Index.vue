@@ -10,7 +10,7 @@
                 </q-chip>
                 <q-chip square>
                     <q-avatar color="blue" text-color="white" class="largura-80">{{totalRecuperados | formatNumber}}</q-avatar>
-                    curados
+                    recuperados
                 </q-chip>
                 <q-chip square>
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalMortesPais | formatNumber}}</q-avatar>
@@ -19,6 +19,7 @@
             </div>
             <hr/>
             <q-table
+                class="shadow-6"
                 title="Brasil"
                 :columns="columnsBR"
                 :data="dadosCovidBR"

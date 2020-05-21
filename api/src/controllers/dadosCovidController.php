@@ -33,6 +33,7 @@ class dadosCovidController {
                     'id_registro' => $valor->id_registro,
                     'novos' => $valor->novos,
                     'recuperados' => $valor->recuperados,
+                    'acompanhamento' => $valor->acompanhamento,
                     'last_updated' => $valor->last_updated
                 ];
             }
