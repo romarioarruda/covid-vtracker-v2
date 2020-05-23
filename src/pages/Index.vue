@@ -29,7 +29,7 @@
             >
                 <template v-slot:top-left v-if="dadosCovidBR.length">
                     <q-btn
-                      :class="this.$q.screen.xs ? 'q-mb-md': ''"
+                      class="q-mb-md"
                       color="primary"
                       icon-right="archive"
                       label="Arquivo CSV"
