@@ -9,11 +9,10 @@ class Database {
         $conn = new mysqli($env['host'], $env['username'], $env['password'], $env['database']);
 
         if($conn->connect_error) {
-            die("Erro: {$conn->connect_error}");
+            throw new AppException("Erro na conexão com o banco de dados");
         }
 
         return $conn;
-
     }
 
 
@@ -30,7 +29,7 @@ class Database {
         $conn = self::getConnection();
 
         if(!mysqli_query($conn, $sql)) {
-            throw new Exception(mysqli_error($conn));
+            throw new AppException('Erro na execução de query');
         }
 
         $id = $conn->insert_id;
