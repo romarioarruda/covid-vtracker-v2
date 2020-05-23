@@ -1,5 +1,5 @@
 <template>
-  <q-page padding class="row justify-center">
+  <q-page padding class="row justify-center" id="scrollTargetRef">
     <div class="col-md-10 col-xs-12">
         <div class="q-mb-xl q-mt-md" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">{{titulo}}</div>
         <template>
@@ -55,7 +55,8 @@
     <div class="col-md-10 col-xs-12 q-mt-xl">
       <GraficoObitos :obitos="obitosConfirmados" />
     </div>
-  </q-page>
+      <ScrollTopReturn/>
+    </q-page>
 </template>
 
 <script>
@@ -64,10 +65,11 @@ import moment from 'moment'
 import { exportFile } from 'quasar'
 import GraficoCasosConfirmados from '../components/GraficoCasosConfirmados'
 import GraficoObitos from '../components/GraficoObitos'
+import ScrollTopReturn from '../components/ScrollTopReturn'
 
 export default {
   name: 'PageIndex',
-  components: { GraficoCasosConfirmados, GraficoObitos },
+  components: { GraficoCasosConfirmados, GraficoObitos, ScrollTopReturn },
   data () {
     return {
       titulo: 'Covid-19 no Brasil',

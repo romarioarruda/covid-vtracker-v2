@@ -129,7 +129,7 @@ export default {
 <style>
   #tituloSecaoCasos {
     border-left: 5px solid #64b5f6;
-    border-radius: 6px;
+    border-radius: 2px;
     color:#1e2023;
   }
 </style>

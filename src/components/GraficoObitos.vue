@@ -111,7 +111,7 @@ export default {
 <style>
   #tituloSecaoObitos {
     border-left: 5px solid #f48fb1;
-    border-radius: 6px;
+    border-radius: 2px;
     color:#1e2023;
   }
 </style>

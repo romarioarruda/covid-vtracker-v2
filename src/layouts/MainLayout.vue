@@ -15,7 +15,7 @@
           Rastreador do Covid-19
         </q-toolbar-title>
 
-        <div>Vtracker v2</div>
+        <div>V-tracker v2.0</div>
       </q-toolbar>
     </q-header>
 
