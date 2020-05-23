@@ -1,7 +1,7 @@
 <template>
     <q-page padding class="row justify-center">
         <div class="col-md-10 col-xs-12">
-          <div class="text-h5 q-mb-xl">Últimas Notí­cias</div>
+          <div class="text-h5 q-mt-md q-mb-xl">Últimas Notí­cias</div>
           <q-spinner-cube
             size="xl"
             color="primary"

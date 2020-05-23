@@ -1,32 +1,13 @@
 <template>
   <div class="area-graficos row justify-center">
-    <div class="col-md-12 col-xs-12 q-mt-md" id="tituloSecaoCasos">
-      <div class="row justify-start" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">Casos confirmados</div>
+    <div class="col-md-12 col-xs-12 q-mt-md" id="tituloSecaoObitos">
+      <div class="row justify-start" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">Óbitos confirmados</div>
     </div>
     <div id="graficoNovosCasos" class="shadow-6 col-md-12 col-xs-12 q-mt-md">
       <q-card class="my-card">
         <q-card-section class="row justify-center">
           <highcharts
-          :options="this.graficoCasosConfirmados('novos', 'Casos novos de COVID-19 por data de notificação', 'Casos novos por dia')">
-          </highcharts>
-        </q-card-section>
-      </q-card>
-    </div>
-
-    <div id="casosRecuperados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
-      <q-card class="shadow-6">
-        <q-card-section class="row justify-center">
-          <highcharts
-          :options="this.graficoCasosConfirmados('recuperados', 'Total de casos recuperados', 'Total acumulado por dia')">
-          </highcharts>
-        </q-card-section>
-      </q-card>
-    </div>
-    <div id="casosAcompanhados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
-      <q-card class="shadow-6">
-        <q-card-section class="row justify-center">
-          <highcharts
-          :options="this.graficoCasosConfirmados('acompanhamento', 'Casos em acompanhamento', 'Total acumulado por dia')">
+          :options="this.graficoObitos('novos', 'Óbitos de COVID-19 por data de notificação')">
           </highcharts>
         </q-card-section>
       </q-card>
@@ -38,13 +19,13 @@ import { Chart } from 'highcharts-vue'
 import moment from 'moment'
 
 export default {
-  name: 'GraficoCasosConfirmados',
+  name: 'GraficoObitos',
   components: {
     highcharts: Chart
   },
 
   props: {
-    casos: {
+    obitos: {
       type: Array,
       required: true
     }
@@ -57,13 +38,13 @@ export default {
   },
 
   methods: {
-    graficoCasosConfirmados (tipo, titulo, subtitulo) {
+    graficoObitos (tipo, titulo) {
       /* eslint-disable */
       let dados = {
         'data' : []
       }
 
-      this.casos.forEach((item, index) => {
+      this.obitos.forEach((item, index) => {
           dados.data.push({
             'date': moment(item.last_updated).format('DD/MM/YYYY'),
             'new': parseInt(item[tipo])
@@ -94,18 +75,19 @@ export default {
           yAxis: {
             min: 0,
             title: {
-              text: subtitulo
+              text: 'Óbitos por dia'
             }
           },
           legend: {
             enabled: false
           },
           tooltip: {
-            pointFormat: 'Casos: <b>{point.y:1f}</b>'
+            pointFormat: 'Óbitos: <b>{point.y:1f}</b>'
           },
           series: [
             {
-              name: 'Casos',
+              name: 'Óbitos',
+              color: '#f48fb1',
               data: dados.data.map((item) => [ item.date, item.new ]),
               dataLabels: {
                 enabled: true,
@@ -127,8 +109,8 @@ export default {
 }
 </script>
 <style>
-  #tituloSecaoCasos {
-    border-left: 5px solid #64b5f6;
+  #tituloSecaoObitos {
+    border-left: 5px solid #f48fb1;
     border-radius: 6px;
     color:#1e2023;
   }

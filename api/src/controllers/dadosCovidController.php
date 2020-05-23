@@ -42,6 +42,24 @@ class dadosCovidController {
     }
 
 
+    public function getObitos() {
+        header("Access-Control-Allow-Origin: *");
+        $dados = [];
+        $result = CovidObitos::get();
+
+        if($result) {
+            foreach($result as $chave => $valor) {
+                $dados[] = [
+                    'id_registro' => $valor->id_registro,
+                    'novos' => $valor->novos,
+                    'last_updated' => $valor->last_updated
+                ];
+            }
+        }
+        return Flight::json(array('obitos' => $dados));
+    }
+
+
     public function execVarreduraApiGoverno() {
         exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalEstado'", $output_curl);
         
@@ -67,5 +85,18 @@ class dadosCovidController {
             return Flight::json(['recuperados_updated' => 1]);
         }
         return Flight::json(['recuperados_updated' => 0]);
+    }
+
+
+    public function execTotalObitos(){
+        exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeralApi'", $output_curl);
+        
+        $objetoJson = json_decode($output_curl[0]);
+
+        if($objetoJson) {
+            CovidObitos::updateObitos($objetoJson->obitos);
+            return Flight::json(['obitos_updated' => 1]);
+        }
+        return Flight::json(['obitos_updated' => 0]);
     }
 }

@@ -52,6 +52,9 @@
     <div class="col-md-10 col-xs-12 q-mt-xl">
       <GraficoCasosConfirmados :casos="casosConfirmados" />
     </div>
+    <div class="col-md-10 col-xs-12 q-mt-xl">
+      <GraficoObitos :obitos="obitosConfirmados" />
+    </div>
   </q-page>
 </template>
 
@@ -60,10 +63,11 @@ import axios from 'axios'
 import moment from 'moment'
 import { exportFile } from 'quasar'
 import GraficoCasosConfirmados from '../components/GraficoCasosConfirmados'
+import GraficoObitos from '../components/GraficoObitos'
 
 export default {
   name: 'PageIndex',
-  components: { GraficoCasosConfirmados },
+  components: { GraficoCasosConfirmados, GraficoObitos },
   data () {
     return {
       titulo: 'Covid-19 no Brasil',
@@ -87,6 +91,7 @@ export default {
       totalRecuperados: 0,
       totalEstadosAfetados: 0,
       totalMortesPais: 0,
+      obitosConfirmados: [],
       ultimasNoticias: []
     }
   },
@@ -94,6 +99,7 @@ export default {
   mounted () {
     this.getdadosCovidBR()
     this.getTotalRecuperados()
+    this.getObitos()
   },
 
   methods: {
@@ -122,6 +128,19 @@ export default {
               res.data.dados.map((item) => {
                 this.totalRecuperados = parseInt(item.recuperados)
                 this.casosConfirmados.push(item)
+              })
+            }
+          }
+        })
+    },
+
+    getObitos () {
+      axios.get('http://localhost:8081/get-obitos')
+        .then((res) => {
+          if (res.data) {
+            if (res.data.obitos) {
+              this.obitosConfirmados = res.data.obitos.map((item) => {
+                return item
               })
             }
           }
