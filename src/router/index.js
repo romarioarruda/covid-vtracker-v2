@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
 
 import routes from './routes'
 
 Vue.use(VueRouter)
+axios.defaults.baseURL = 'http://localhost:8081'
 
 /*
  * If not building with SSR mode, you can

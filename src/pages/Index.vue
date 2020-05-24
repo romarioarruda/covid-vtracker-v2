@@ -107,7 +107,7 @@ export default {
   methods: {
     getdadosCovidBR () {
       moment.locale('pt-br')
-      axios.get('http://localhost:8081/dados-covid-br')
+      axios.get('/dados-covid-br')
         .then((res) => {
           this.dadosCovidBR = res.data.dados.map((item) => {
             const dados = []
@@ -123,7 +123,7 @@ export default {
     },
 
     getTotalRecuperados () {
-      axios.get('http://localhost:8081/get-recuperados')
+      axios.get('/get-recuperados')
         .then((res) => {
           if (res.data) {
             if (res.data.dados) {
@@ -137,7 +137,7 @@ export default {
     },
 
     getObitos () {
-      axios.get('http://localhost:8081/get-obitos')
+      axios.get('/get-obitos')
         .then((res) => {
           if (res.data) {
             if (res.data.obitos) {

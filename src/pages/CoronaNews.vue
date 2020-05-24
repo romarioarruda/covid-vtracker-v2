@@ -54,7 +54,7 @@ export default {
     },
 
     getUltimasNoticias () {
-      axios.get('http://localhost:8081/ultimas-noticias')
+      axios.get('/ultimas-noticias')
         .then((res) => {
           this.ultimasNoticias = res.data.news
         })

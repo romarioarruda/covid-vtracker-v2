@@ -7,13 +7,13 @@
       >
     </p>
     <p class="text-faded">
-      Sorry, nothing here...<strong>(404)</strong>
+      Desculpe, nada por aqui...<strong>(404)</strong>
     </p>
     <q-btn
       color="secondary"
       style="width:200px;"
       to="/"
-      label="Go back"
+      label="Voltar"
     />
   </div>
 </template>
