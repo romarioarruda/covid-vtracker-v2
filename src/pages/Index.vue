@@ -3,18 +3,18 @@
     <div class="col-md-10 col-xs-12">
         <div class="q-mb-xl q-mt-md" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">{{titulo}}</div>
         <template>
-            <div class="justify-between row justify-wrap">
-                <q-chip square>
+            <div class="row justify-between justify-wrap">
+                <q-chip style="height: none;" square :class="squareSM">
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalConfirmadoBR | formatNumber}}</q-avatar>
                     casos no país
                 </q-chip>
-                <q-chip square>
+                <q-chip square :class="squareSM">
                     <q-avatar color="blue" text-color="white" class="largura-80">{{totalRecuperados | formatNumber}}</q-avatar>
                     recuperados
                 </q-chip>
-                <q-chip square>
+                <q-chip square :class="squareSM">
                     <q-avatar color="red" text-color="white" class="largura-80">{{totalMortesPais | formatNumber}}</q-avatar>
-                    mortes no país
+                    mortes
                 </q-chip>
             </div>
             <hr/>
@@ -203,6 +203,12 @@ export default {
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
       }
     }
+  },
+
+  computed: {
+    squareSM () {
+      return this.$q.screen.xs ? 'squareTotalWidth' : ''
+    }
   }
 }
 </script>
@@ -213,5 +219,9 @@ export default {
 
   .largura-50 {
       width: 50px;
+  }
+
+  .squareTotalWidth {
+    width: 98.6667%;
   }
 </style>

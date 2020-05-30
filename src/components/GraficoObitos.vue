@@ -87,7 +87,7 @@ export default {
           series: [
             {
               name: 'Óbitos',
-              color: '#f48fb1',
+              color: '#f4433666',
               data: dados.data.map((item) => [ item.date, item.new ]),
               dataLabels: {
                 enabled: true,
@@ -110,7 +110,7 @@ export default {
 </script>
 <style>
   #tituloSecaoObitos {
-    border-left: 5px solid #f48fb1;
+    border-left: 5px solid #f4433666;
     border-radius: 2px;
     color:#1e2023;
   }
