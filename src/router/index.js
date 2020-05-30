@@ -6,7 +6,7 @@ import routes from './routes'
 
 Vue.use(VueRouter)
 // axios.defaults.baseURL = 'http://localhost:8081'
-// axios.defaults.baseURL = 'covid.romarioarruda.dev'
+axios.defaults.baseURL = 'https://api.romarioarruda.dev/apicovid'
 
 /*
  * If not building with SSR mode, you can
