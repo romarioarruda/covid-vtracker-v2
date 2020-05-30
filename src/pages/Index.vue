@@ -111,7 +111,7 @@ export default {
         .then((res) => {
           this.dadosCovidBR = res.data.dados.map((item) => {
             const dados = []
-            dados.uf = item.uf
+            dados.uf = item.uf === 'MA' ? 'MAR' : item.uf
             dados.obitos_acumulado = this.formatValue(parseInt(item.obitos_acumulado)) || 0
             dados.casos_acumulado = this.formatValue(parseInt(item.casos_acumulado)) || 0
             dados.last_updated = moment(item.last_updated).format('LLL')
