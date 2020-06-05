@@ -58,10 +58,10 @@ class Model {
         $sql = "SELECT {$columns} FROM "
             . static::$tableName
             . static::getFilters($filters);
-
+        
         $result = Database::getResultFromQuery($sql);
-        if ($result->num_rows === 0) return null;
-        return $result;
+        
+        return $result->num_rows === 0 ? null : $result;
     }
 
 
