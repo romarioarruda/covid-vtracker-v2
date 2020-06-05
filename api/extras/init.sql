@@ -7,7 +7,7 @@
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
-CREATE DATABASE `covid`;
+CREATE DATABASE IF NOT EXISTS `covid`;
 
 use `covid`;
 
@@ -15,7 +15,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `covid`
 --
 
 -- --------------------------------------------------------
@@ -23,7 +22,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `dados_covid`
 --
-DROP TABLE IF NOT EXISTS `dados_covid`;
+-- DROP TABLE IF NOT EXISTS `dados_covid`;
 CREATE TABLE `dados_covid` (
   `id_registro` int(11) NOT NULL,
   `uf` varchar(4) DEFAULT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE `dados_covid` (
 --
 -- Table structure for table `obitos`
 --
-DROP TABLE IF NOT EXISTS `obitos`;
+-- DROP TABLE IF NOT EXISTS `obitos`;
 CREATE TABLE `obitos` (
   `id_registro` int(11) NOT NULL,
   `novos` int(11) NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE `obitos` (
 --
 -- Table structure for table `recuperados`
 --
-DROP TABLE IF NOT EXISTS `recuperados`;
+-- DROP TABLE IF NOT EXISTS `recuperados`;
 CREATE TABLE `recuperados` (
   `id_registro` int(11) NOT NULL,
   `novos` int(11) NOT NULL,
