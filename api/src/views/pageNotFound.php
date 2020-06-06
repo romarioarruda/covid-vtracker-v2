@@ -7,7 +7,7 @@
 </head>
 <body>
     <main>
-        <h2 style="text-align:center">Página sem conteúdo</h2>
+        <h2 style="text-align:center">Rota sem conteúdo</h2>
     </main>
 </body>
 </html>

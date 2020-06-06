@@ -68,7 +68,7 @@ class dadosCovidController {
     }
 
 
-    public function retornaUmResultadoPorData($data_ini){
+    public function recuperadosUmResultadoPorData($data_ini){
         $result = CovidRecuperados::getOne(["raw" => "last_updated LIKE '%{$data_ini}%'"]);
 
         if(!$result) return Flight::json(array('recuperados' => []));
@@ -108,7 +108,7 @@ class dadosCovidController {
 
         return $data_fim
             ? $this->retornaRecuperadosEntreDatas($data_ini, $data_fim)
-            : $this->retornaUmResultadoPorData($data_ini);
+            : $this->recuperadosUmResultadoPorData($data_ini);
     }
 
 
@@ -133,11 +133,61 @@ class dadosCovidController {
 
     public function getObitos() {
         header("Access-Control-Allow-Origin: *");
-        $dados = [];
+        $ini = Flight::request()->query->data_ini;
+        $fim = Flight::request()->query->data_fim;
+
+        return $ini ? $this->getObitosFiltroData($ini, $fim) : $this->getObitosAll();
+    }
+
+
+    public function getObitosFiltroData($data_ini, $data_fim){
+        $validacaoData = $this->verificaFormatoDeDataValido($data_ini, $data_fim);
+
+        if(!$validacaoData) return false;
+
+        return $data_fim
+            ? $this->retornaObitosEntreDatas($data_ini, $data_fim)
+            : $this->obitosUmResultadoPorData($data_ini);
+    }
+
+
+    public function getObitosAll(){
+        $dados  = [];
         $result = CovidObitos::get();
 
         if(!$result) return Flight::json(array('obitos' => $dados));
         
+        foreach($result as $chave => $valor) {
+            $dados[] = [
+                'id_registro' => $valor->id_registro,
+                'novos' => $valor->novos,
+                'last_updated' => $valor->last_updated
+            ];
+        }
+        return Flight::json(array('obitos' => $dados));
+    }
+
+
+    public function obitosUmResultadoPorData($data_ini){
+        $result = CovidObitos::getOne(["raw" => "last_updated LIKE '%{$data_ini}%'"]);
+
+        if(!$result) return Flight::json(array('obitos' => []));
+
+        $dados = [
+            'id_registro' => $result->id_registro,
+            'novos' => $result->novos,
+            'last_updated' => $result->last_updated
+        ];
+        return Flight::json(array('obitos' => $dados));
+    }
+
+
+    public function retornaObitosEntreDatas($data_ini, $data_fim){
+        $dados  = [];
+        $result = CovidObitos::get(["raw" => "last_updated BETWEEN '{$data_ini} 00:00:00' AND '{$data_fim} 23:59:59'"]);
+        
+        if(!$result) return Flight::json(array('obitos' => []));
+
         foreach($result as $chave => $valor) {
             $dados[] = [
                 'id_registro' => $valor->id_registro,
