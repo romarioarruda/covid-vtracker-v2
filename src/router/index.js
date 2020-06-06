@@ -6,7 +6,7 @@ import routes from './routes'
 
 Vue.use(VueRouter)
 // axios.defaults.baseURL = 'https://api.romarioarruda.dev/apicovid'
-axios.defaults.baseURL = 'http://34.234.117.156/apicovid'
+axios.defaults.baseURL = 'http://desenvolvimento.test:8081'
 
 /*
  * If not building with SSR mode, you can

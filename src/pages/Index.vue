@@ -107,11 +107,11 @@ export default {
   methods: {
     getdadosCovidBR () {
       moment.locale('pt-br')
-      axios.get('/dados-covid-br')
+      axios.get('/covid')
         .then((res) => {
-          this.dadosCovidBR = res.data.dados.map((item) => {
+          this.dadosCovidBR = res.data.casos.map((item) => {
             const dados = []
-            dados.uf = item.uf === 'MA' ? 'MAR' : item.uf
+            dados.uf = item.uf
             dados.obitos_acumulado = this.formatValue(parseInt(item.obitos_acumulado)) || 0
             dados.casos_acumulado = this.formatValue(parseInt(item.casos_acumulado)) || 0
             dados.last_updated = moment(item.last_updated).format('LLL')
@@ -123,28 +123,24 @@ export default {
     },
 
     getTotalRecuperados () {
-      axios.get('/get-recuperados')
+      axios.get('/covid/recuperados')
         .then((res) => {
-          if (res.data) {
-            if (res.data.dados) {
-              res.data.dados.map((item) => {
-                this.totalRecuperados = parseInt(item.recuperados)
-                this.casosConfirmados.push(item)
-              })
-            }
+          if (res.data.recuperados) {
+            res.data.recuperados.map((item) => {
+              this.totalRecuperados = parseInt(item.recuperados)
+              this.casosConfirmados.push(item)
+            })
           }
         })
     },
 
     getObitos () {
-      axios.get('/get-obitos')
+      axios.get('/covid/obitos')
         .then((res) => {
-          if (res.data) {
-            if (res.data.obitos) {
-              this.obitosConfirmados = res.data.obitos.map((item) => {
-                return item
-              })
-            }
+          if (res.data.obitos) {
+            this.obitosConfirmados = res.data.obitos.map((item) => {
+              return item
+            })
           }
         })
     },
