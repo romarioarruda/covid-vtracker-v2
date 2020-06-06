@@ -6,7 +6,7 @@ $dadosCovid = new dadosCovidController;
 $varreduraCovid = new execVarreduraCovidController;
 $newsCovid  = new ultimasNoticiasController;
 
-//End-points que pegam dados
+//Endpoints que pegam dados
 Flight::route('GET /covid', array($dadosCovid, 'getDadosCovid'));
 Flight::route('GET /covid/recuperados', array($dadosCovid, 'getRecuperados'));
 Flight::route('GET /covid/obitos', array($dadosCovid, 'getObitos'));
@@ -17,5 +17,10 @@ Flight::route('GET /covid/atualizar-recuperados', array($varreduraCovid, 'execTo
 Flight::route('GET /covid/atualizar-obitos', array($varreduraCovid, 'execTotalObitos'));
 Flight::route('GET /covid/ultimas-noticias', array($newsCovid, 'execUltimasNoticias'));
 
+//Views
+Flight::set('flight.views.path', 'src/views');
+Flight::map('notFound', function(){
+    Flight::render('pageNotFound');
+});
 
 Flight::start();
