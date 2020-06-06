@@ -12,10 +12,13 @@ class Model {
 
 
     public function loadFromArray($array) {
-        if ($array) {
-            foreach($array as $key => $value) {
-                $this->$key = $value;
-            }
+        $class = get_called_class();
+        if (!$array) throw new AppException(
+            "A estrutura de dados passada no objeto {$class} precisa ser uma matriz válida"
+        );
+
+        foreach($array as $key => $value) {
+            $this->$key = $value;
         }
     }
 
@@ -40,14 +43,13 @@ class Model {
 
     public static function get($filters = [], $columns = '*') {
         $objects = [];
-
-        $result = static::getResultSetFromSelect($filters, $columns);
+        $result  = static::getResultSetFromSelect($filters, $columns);
         
-        if ($result) {
-            $class = get_called_class();
-            while($row = $result->fetch_assoc()) {
-                array_push($objects, new $class($row));
-            }
+        if (!$result) return $objects;
+
+        $class = get_called_class();
+        while($row = $result->fetch_assoc()) {
+            array_push($objects, new $class($row));
         }
 
         return $objects;
@@ -93,29 +95,24 @@ class Model {
 
     public static function getFilters($filters) {
         $sql = '';
-        if (count($filters) > 0) {
-            $sql .= " WHERE 1 = 1";
-            foreach($filters as $columns => $values) {
-                if($columns === 'raw') {
-                    $sql .= " AND {$values}";
-                } else {
-                    $sql .= " AND {$columns} = ". static::getFormatValue($values);
-                }
+        if (count($filters) <= 0) return $sql;
+        $sql .= " WHERE 1 = 1";
+
+        foreach($filters as $columns => $values) {
+            if($columns === 'raw') {
+                $sql .= " AND {$values}";
+            } else {
+                $sql .= " AND {$columns} = ". static::getFormatValue($values);
             }
         }
-
         return $sql;
     }
 
 
     public static function getFormatValue($value) {
-        if (is_null($value)) {
-            return "null";
-        } elseif(gettype($value) ===  "string") {
-            return "'$value'";
-        }else {
-            return $value;
-        }
+        if(is_null($value)) return "null";
+        if(gettype($value) === "string") return "'$value'";
+        return $value;
     }
 
 }
