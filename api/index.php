@@ -17,10 +17,9 @@ Flight::route('GET /covid/atualizar-recuperados', array($varreduraCovid, 'execTo
 Flight::route('GET /covid/atualizar-obitos', array($varreduraCovid, 'execTotalObitos'));
 Flight::route('GET /covid/ultimas-noticias', array($newsCovid, 'execUltimasNoticias'));
 
-//Views
-Flight::set('flight.views.path', 'src/views');
+//Mapeando rota que não tem nada.
 Flight::map('notFound', function(){
-    Flight::render('pageNotFound');
+    echo '<h1>Rota sem conteúdo</h1>';
 });
 
 Flight::start();
