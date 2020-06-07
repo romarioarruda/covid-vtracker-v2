@@ -52,7 +52,7 @@ export default {
 
   data () {
     return {
-      link: '<a href="https://covid.saude.gov.br/">Ministério da Saúde</a>'
+      link: 'Secretarias Estaduais de Saúde'
     }
   },
 

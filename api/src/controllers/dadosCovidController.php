@@ -11,6 +11,25 @@ class dadosCovidController {
     }
 
 
+    public function getCovidTotais() {
+        header("Access-Control-Allow-Origin: *");
+        
+        $totais = CovidAcumulados::getOne(
+            [],
+            'SUM(casos_acumulado) as total_casos, SUM(obitos_acumulado) as total_obitos'
+        );
+
+        if(!$totais) return Flight::json(array('totais' => []));
+
+        $dados = [
+            'casos_acumulado' =>$totais->total_casos,
+            'obitos_acumulado' => $totais->total_obitos
+        ];
+
+        return Flight::json(array('totais' => $dados));
+    }
+
+
     public function getCovidFiltroUF($uf) {
         $result = Covid::getOne(['uf' => addslashes($uf)]);
         

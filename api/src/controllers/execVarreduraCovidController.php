@@ -16,26 +16,18 @@ class execVarreduraCovidController {
     }
 
 
-    public function execTotalRecuperados(){
+    public function execTotalAcumulado(){
         exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeralApi'", $output_curl);
         
         $objetoJson = json_decode($output_curl[0]);
 
-        if(!$objetoJson) return Flight::json(['recuperados_updated' => 0]);
+        if(!$objetoJson) return Flight::json(['acumulados_updated' => 0]);
 
         CovidRecuperados::updateRecuperados($objetoJson->confirmados);
-        return Flight::json(['recuperados_updated' => 1]);
-    }
-
-
-    public function execTotalObitos(){
-        exec("curl 'https://xx9p7hp1p7.execute-api.us-east-1.amazonaws.com/prod/PortalGeralApi'", $output_curl);
-        
-        $objetoJson = json_decode($output_curl[0]);
-
-        if(!$objetoJson) return Flight::json(['obitos_updated' => 0]);
-
         CovidObitos::updateObitos($objetoJson->obitos);
-        return Flight::json(['obitos_updated' => 1]);
+        CovidAcumulados::updateAcumulados($objetoJson);
+
+        return Flight::json(['acumulados_updated' => 1]);
     }
+
 }

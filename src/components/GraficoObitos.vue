@@ -31,12 +31,6 @@ export default {
     }
   },
 
-  data () {
-    return {
-      link: '<a href="https://covid.saude.gov.br/">Ministério da Saúde</a>'
-    }
-  },
-
   methods: {
     graficoObitos (tipo, titulo) {
       /* eslint-disable */
@@ -59,7 +53,7 @@ export default {
             text: titulo
           },
           subtitle: {
-            text: `Fonte: ${this.link}`
+            text: 'Fonte: Secretarias Estaduais de Saúde'
           },
           xAxis: {
             type: 'category',

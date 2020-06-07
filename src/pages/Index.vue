@@ -100,6 +100,7 @@ export default {
 
   mounted () {
     this.getdadosCovidBR()
+    this.getdadosCovidTotais()
     this.getTotalRecuperados()
     this.getObitos()
   },
@@ -115,10 +116,16 @@ export default {
             dados.obitos_acumulado = this.formatValue(parseInt(item.obitos_acumulado)) || 0
             dados.casos_acumulado = this.formatValue(parseInt(item.casos_acumulado)) || 0
             dados.last_updated = moment(item.last_updated).format('LLL')
-            this.totalConfirmadoBR += parseInt(item.casos_acumulado)
-            this.totalMortesPais += parseInt(item.obitos_acumulado)
             return dados
           })
+        })
+    },
+
+    getdadosCovidTotais () {
+      axios.get('/covid/totais')
+        .then((res) => {
+          this.totalConfirmadoBR = parseInt(res.data.totais.casos_acumulado) || 0
+          this.totalMortesPais = parseInt(res.data.totais.obitos_acumulado) || 0
         })
     },
 
