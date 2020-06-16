@@ -60,7 +60,6 @@ class Model {
         $sql = "SELECT {$columns} FROM "
             . static::$tableName
             . static::getFilters($filters);
-        
         $result = Database::getResultFromQuery($sql);
         
         return $result->num_rows === 0 ? null : $result;
@@ -101,6 +100,8 @@ class Model {
         foreach($filters as $columns => $values) {
             if($columns === 'raw') {
                 $sql .= " AND {$values}";
+            } elseif ($columns === 'order') {
+                $sql .= " {$values}";
             } else {
                 $sql .= " AND {$columns} = ". static::getFormatValue($values);
             }

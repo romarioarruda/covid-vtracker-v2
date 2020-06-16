@@ -12,8 +12,8 @@ class CovidAcumulados extends Model {
 
     public static function updateAcumulados($obj) {
         $result = new CovidAcumulados([
-            'casos_acumulado' => $obj->confirmados->novos,
-            'obitos_acumulado' =>$obj->obitos->novos,
+            'casos_acumulado' => $obj->confirmados->total,
+            'obitos_acumulado' => $obj->obitos->total,
             'last_updated' => date('Y-m-d H:i:s')
         ]);
         $result->insert();

@@ -5,7 +5,7 @@ import axios from 'axios'
 import routes from './routes'
 
 Vue.use(VueRouter)
-axios.defaults.baseURL = 'http://apicovid.romarioarruda.dev'
+axios.defaults.baseURL = 'https://romarioarruda.dev/covid/api'
 // axios.defaults.baseURL = 'http://desenvolvimento.test:8081'
 
 /*
