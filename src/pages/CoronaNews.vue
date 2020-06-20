@@ -62,3 +62,8 @@ export default {
   }
 }
 </script>
+<style>
+  .publogo{
+    display: none;
+  }
+</style>

@@ -4,6 +4,7 @@
       <div class="row justify-start" :class="this.$q.screen.xs ? 'text-h5': 'text-h4'">Casos confirmados</div>
     </div>
     <div id="graficoNovosCasos" class="shadow-6 col-md-12 col-xs-12 q-mt-md">
+      <FiltroData @filterDate="filterDate" class="row justify-end" />
       <q-card class="my-card">
         <q-card-section class="row justify-center">
           <highcharts
@@ -36,11 +37,13 @@
 <script>
 import { Chart } from 'highcharts-vue'
 import moment from 'moment'
+import FiltroData from './FiltroData'
 
 export default {
   name: 'GraficoCasosConfirmados',
   components: {
-    highcharts: Chart
+    highcharts: Chart,
+    FiltroData
   },
 
   props: {
@@ -57,6 +60,10 @@ export default {
   },
 
   methods: {
+    filterDate (date) {
+      this.$emit('filterDate', { date: date.date })
+    },
+
     graficoCasosConfirmados (tipo, titulo, subtitulo) {
       /* eslint-disable */
       let dados = {

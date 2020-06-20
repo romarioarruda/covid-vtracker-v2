@@ -4,7 +4,7 @@ class ultimasNoticiasController {
 
     public function execUltimasNoticias() {
         header("Access-Control-Allow-Origin: *");
-        $content = file_get_contents('https://www.bing.com/news/search?q=coronavirus');
+        $content = file_get_contents('https://www.bing.com/news/search?q=coronavirus+brasil');
         $arrayData = [];
         $materiasRecentes = [];
     

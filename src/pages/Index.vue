@@ -50,10 +50,10 @@
         </template>
     </div>
     <div class="col-md-10 col-xs-12 q-mt-xl">
-      <GraficoCasosConfirmados :casos="casosConfirmados" />
+      <GraficoCasosConfirmados @filterDate="filterDateRecuperados" :casos="casosConfirmados" />
     </div>
     <div class="col-md-10 col-xs-12 q-mt-xl">
-      <GraficoObitos :obitos="obitosConfirmados" />
+      <GraficoObitos @filterDateObitos="filterDateObitos" :obitos="obitosConfirmados" />
     </div>
       <ScrollTopReturn/>
     </q-page>
@@ -145,6 +145,32 @@ export default {
       axios.get('/covid/obitos')
         .then((res) => {
           if (res.data.obitos) {
+            this.obitosConfirmados = res.data.obitos.map((item) => {
+              return item
+            })
+          }
+        })
+    },
+
+    filterDateRecuperados (value) {
+      const novaData = moment(value.date).format('YYYY-MM-DD')
+      axios.get(`/covid/recuperados?data_ini=${novaData}`)
+        .then((res) => {
+          if (res.data.recuperados) {
+            this.casosConfirmados = []
+            res.data.recuperados.map((item) => {
+              this.casosConfirmados.push(item)
+            })
+          }
+        })
+    },
+
+    filterDateObitos (value) {
+      const novaData = moment(value.date).format('YYYY-MM-DD')
+      axios.get(`/covid/obitos?data_ini=${novaData}`)
+        .then((res) => {
+          if (res.data.obitos) {
+            this.obitosConfirmados = []
             this.obitosConfirmados = res.data.obitos.map((item) => {
               return item
             })

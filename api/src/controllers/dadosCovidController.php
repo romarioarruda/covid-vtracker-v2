@@ -66,8 +66,14 @@ class dadosCovidController {
     public function getRecuperados() {
         header("Access-Control-Allow-Origin: *");
 
-        $ini = Flight::request()->query->data_ini;
-        $fim = Flight::request()->query->data_fim;
+        $data_ini = Flight::request()->query->data_ini;
+        $data_fim = Flight::request()->query->data_fim;
+
+        $data_ini_default = date('Y-m-01');
+        $data_fim_default = date('Y-m-t');
+
+        $ini = $data_ini ? $data_ini : $data_ini_default;
+        $fim = $data_fim ? $data_fim : $data_fim_default;
 
         return $ini ? $this->getRecuperadosFiltroData($ini, $fim) : $this->getRecuperadosAll();
     }
@@ -149,8 +155,15 @@ class dadosCovidController {
 
     public function getObitos() {
         header("Access-Control-Allow-Origin: *");
-        $ini = Flight::request()->query->data_ini;
-        $fim = Flight::request()->query->data_fim;
+
+        $data_ini = Flight::request()->query->data_ini;
+        $data_fim = Flight::request()->query->data_fim;
+
+        $data_ini_default = date('Y-m-01');
+        $data_fim_default = date('Y-m-t');
+
+        $ini = $data_ini ? $data_ini : $data_ini_default;
+        $fim = $data_fim ? $data_fim : $data_fim_default;
 
         return $ini ? $this->getObitosFiltroData($ini, $fim) : $this->getObitosAll();
     }
