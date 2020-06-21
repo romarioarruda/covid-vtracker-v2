@@ -5,15 +5,30 @@
         <template>
             <div class="row justify-between justify-wrap">
                 <q-chip style="height: none;" square :class="squareSM">
-                    <q-avatar color="red" text-color="white" class="largura-80">{{totalConfirmadoBR | formatNumber}}</q-avatar>
+                    <q-avatar color="red" text-color="white" class="largura-80">
+                      <q-skeleton v-if="!totalConfirmadoBR" type="QBtn" />
+                      <template v-else>
+                        {{totalConfirmadoBR | formatNumber}}
+                      </template>
+                    </q-avatar>
                     casos no país
                 </q-chip>
                 <q-chip square :class="squareSM">
-                    <q-avatar color="blue" text-color="white" class="largura-80">{{totalRecuperados | formatNumber}}</q-avatar>
+                    <q-avatar color="blue" text-color="white" class="largura-80">
+                      <q-skeleton v-if="!totalRecuperados" type="QBtn" />
+                      <template v-else>
+                        {{totalRecuperados | formatNumber}}
+                      </template>
+                    </q-avatar>
                     recuperados
                 </q-chip>
                 <q-chip square :class="squareSM">
-                    <q-avatar color="red" text-color="white" class="largura-80">{{totalMortesPais | formatNumber}}</q-avatar>
+                    <q-avatar color="red" text-color="white" class="largura-80">
+                      <q-skeleton v-if="!totalMortesPais" type="QBtn" />
+                      <template v-else>
+                        {{totalMortesPais | formatNumber}}
+                      </template>
+                    </q-avatar>
                     mortes
                 </q-chip>
             </div>

@@ -7,8 +7,10 @@
       <FiltroData @filterDate="filterDate" class="row justify-end" />
       <q-card class="my-card">
         <q-card-section class="row justify-center">
+          <q-skeleton v-if="!obitos.length"  style="width: 50%" animation="pulse" />
           <highcharts
-          :options="this.graficoObitos('novos', 'Óbitos de COVID-19 por data de notificação')">
+            v-else
+            :options="this.graficoObitos('novos', 'Óbitos de COVID-19 por data de notificação')">
           </highcharts>
         </q-card-section>
       </q-card>

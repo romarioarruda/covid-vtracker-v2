@@ -7,8 +7,10 @@
       <FiltroData @filterDate="filterDate" class="row justify-end" />
       <q-card class="my-card">
         <q-card-section class="row justify-center">
+          <q-skeleton v-if="!casos.length"  style="width: 50%" animation="pulse" />
           <highcharts
-          :options="this.graficoCasosConfirmados('novos', 'Casos novos de COVID-19 por data de notificação', 'Casos novos por dia')">
+            v-else
+            :options="this.graficoCasosConfirmados('novos', 'Casos novos de COVID-19 por data de notificação', 'Casos novos por dia')">
           </highcharts>
         </q-card-section>
       </q-card>
@@ -17,8 +19,10 @@
     <div id="casosRecuperados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
       <q-card class="shadow-6">
         <q-card-section class="row justify-center">
+          <q-skeleton v-if="!casos.length"  style="width: 50%" animation="pulse" />
           <highcharts
-          :options="this.graficoCasosConfirmados('recuperados', 'Total de casos recuperados', 'Total acumulado por dia')">
+            v-else
+            :options="this.graficoCasosConfirmados('recuperados', 'Total de casos recuperados', 'Total acumulado por dia')">
           </highcharts>
         </q-card-section>
       </q-card>
@@ -26,8 +30,10 @@
     <div id="casosAcompanhados" class="shadow-6 col-md-12 col-xs-12 q-mt-xl">
       <q-card class="shadow-6">
         <q-card-section class="row justify-center">
+          <q-skeleton v-if="!casos.length"  style="width: 50%" animation="pulse" />
           <highcharts
-          :options="this.graficoCasosConfirmados('acompanhamento', 'Casos em acompanhamento', 'Total acumulado por dia')">
+            v-else
+            :options="this.graficoCasosConfirmados('acompanhamento', 'Casos em acompanhamento', 'Total acumulado por dia')">
           </highcharts>
         </q-card-section>
       </q-card>
