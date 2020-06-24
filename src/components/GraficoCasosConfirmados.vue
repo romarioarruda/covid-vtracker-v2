@@ -41,9 +41,19 @@
   </div>
 </template>
 <script>
+import HighCharts from 'highcharts'
+import exporting from 'highcharts/modules/exporting'
+import accessibility from 'highcharts/modules/accessibility'
+import ExportData from 'highcharts/modules/export-data'
 import { Chart } from 'highcharts-vue'
 import moment from 'moment'
 import FiltroData from './FiltroData'
+
+// Definindo o objeto highcharts pra liberar
+// as opções de exportação em cada gráfico.
+exporting(HighCharts)
+accessibility(HighCharts)
+ExportData(HighCharts)
 
 export default {
   name: 'GraficoCasosConfirmados',
