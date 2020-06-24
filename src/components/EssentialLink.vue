@@ -2,7 +2,7 @@
   <q-item
     clickable
     tag="a"
-    target="blank"
+    target="_blank"
     rel="noopener noreferrer"
     :href="link"
     v-if="blank"
@@ -11,7 +11,11 @@
       v-if="icon"
       avatar
     >
-      <q-icon :name="icon" />
+      <i class="fab fa-linkedin"
+        style="font-size: 1.3rem;margin-left: 2px;"
+        v-if="icon === 'linkedin'">
+      </i>
+      <q-icon :name="icon" v-else />
     </q-item-section>
     <q-item-section>
       <q-item-label>{{ title }}</q-item-label>

@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Rastreador do Covid-19
+          Dashboard
         </q-toolbar-title>
 
-        <div>V-tracker v2.0</div>
+        <div v-if="!$q.screen.xs">v2.0</div>
       </q-toolbar>
     </q-header>
 
@@ -27,10 +27,21 @@
       <q-list>
         <q-item-label
           header
-          class="text-grey-8"
+          style="margin-bottom: 100px"
         >
-          Links Essenciais
+          <a href="https://www.linkedin.com/in/romário-arruda/" target="_blank" rel="noopener noreferrer">
+            <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 120px">
+              <div class="absolute-bottom bg-transparent">
+                <q-avatar size="56px" class="q-mb-sm">
+                  <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                </q-avatar>
+                <div class="text-weight-bold">Romário Arruda</div>
+                <div>@romarioarruda</div>
+              </div>
+            </q-img>
+          </a>
         </q-item-label>
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -94,8 +105,8 @@ export default {
         {
           title: 'LinkedIn',
           caption: '@romarioarruda',
-          icon: 'rss_feed',
-          link: 'https://www.linkedin.com/in/rom%C3%A1rio-arruda/',
+          icon: 'linkedin',
+          link: 'https://www.linkedin.com/in/romário-arruda/',
           blank: true
         },
         {
