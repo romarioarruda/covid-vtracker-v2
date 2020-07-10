@@ -54,7 +54,7 @@ export default {
     },
 
     getUltimasNoticias () {
-      axios.get('/covid/ultimas-noticias')
+      axios.get('/dados/ultimas-noticias')
         .then((res) => {
           this.ultimasNoticias = res.data.news
         })

@@ -123,7 +123,7 @@ export default {
   methods: {
     getdadosCovidBR () {
       moment.locale('pt-br')
-      axios.get('/covid')
+      axios.get('/dados')
         .then((res) => {
           this.dadosCovidBR = res.data.casos.map((item) => {
             const dados = []
@@ -137,7 +137,7 @@ export default {
     },
 
     getdadosCovidTotais () {
-      axios.get('/covid/totais')
+      axios.get('/dados/totais')
         .then((res) => {
           this.totalConfirmadoBR = parseInt(res.data.totais.casos_acumulado) || 0
           this.totalMortesPais = parseInt(res.data.totais.obitos_acumulado) || 0
@@ -145,7 +145,7 @@ export default {
     },
 
     getTotalRecuperados () {
-      axios.get('/covid/recuperados')
+      axios.get('/dados/recuperados')
         .then((res) => {
           if (res.data.recuperados) {
             res.data.recuperados.map((item) => {
@@ -157,7 +157,7 @@ export default {
     },
 
     getObitos () {
-      axios.get('/covid/obitos')
+      axios.get('/dados/obitos')
         .then((res) => {
           if (res.data.obitos) {
             this.obitosConfirmados = res.data.obitos.map((item) => {
@@ -169,7 +169,7 @@ export default {
 
     filterDateRecuperados (value) {
       const novaData = moment(value.date).format('YYYY-MM-DD')
-      axios.get(`/covid/recuperados?data_ini=${novaData}`)
+      axios.get(`/dados/recuperados?data_ini=${novaData}`)
         .then((res) => {
           if (res.data.recuperados) {
             this.casosConfirmados = []
@@ -182,7 +182,7 @@ export default {
 
     filterDateObitos (value) {
       const novaData = moment(value.date).format('YYYY-MM-DD')
-      axios.get(`/covid/obitos?data_ini=${novaData}`)
+      axios.get(`/dados/obitos?data_ini=${novaData}`)
         .then((res) => {
           if (res.data.obitos) {
             this.obitosConfirmados = []
