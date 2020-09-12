@@ -10,6 +10,10 @@ const routes = [
       {
         path: '/coronavirus',
         component: () => import('pages/CoronaNews.vue')
+      },
+      {
+        path: '/tecnologia',
+        component: () => import('pages/Tech.vue')
       }
     ]
   }

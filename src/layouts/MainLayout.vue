@@ -94,10 +94,17 @@ export default {
           blank: false
         },
         {
-          title: 'Úlitimas Notícias',
+          title: 'Últimas Notícias',
           caption: 'Coronavirus',
           icon: 'unsubscribe',
           link: '/coronavirus',
+          blank: false
+        },
+        {
+          title: 'Tecnologias',
+          caption: 'Sobre',
+          icon: 'fa fa-tools',
+          link: '/tecnologia',
           blank: false
         }
       ],
